@@ -1,6 +1,6 @@
 {% comment %}
   Purelane Shop / Product Grid Section
-  Renders responsive grid of products using purelane-product-card snippet.
+  Renders responsive 4-column grid of products matching reference design.
 {% endcomment %}
 
 <section class="sec purelane-body-root" id="shop" data-scene="3">
@@ -10,7 +10,7 @@
         <span class="kicker purelane-kicker">{{ section.settings.kicker | escape }}</span>
       {%- endif -%}
 
-      <h2 class="d2 purelane-d2">
+      <h2 class="d2 purelane-d2" style="margin-top:12px;">
         {{ section.settings.title_line1 | escape }}
         {%- if section.settings.title_line2 != blank -%}
           <span class="lime purelane-lime">{{ section.settings.title_line2 | escape }}</span>
@@ -18,10 +18,11 @@
       </h2>
 
       {%- if section.settings.show_rule -%}
-        <div class="rule">
+        <div class="rule" style="margin:14px auto 0;">
           <i></i>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
+            <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
           </svg>
           <i></i>
         </div>
@@ -38,15 +39,15 @@
           {% render 'purelane-product-card', product: prod %}
         {%- endfor -%}
       {%- else -%}
-        <!-- Mock Fallback Product Grid (8 Products matching assignment spec) -->
-        {% render 'purelane-product-card', title: 'Foaming Kitchen Cleaner', price: '₹200', compare_price: '₹299', badge: 'BESTSELLER', icon_class: 'p-kitchen', rating: '4.9', reviews_count: '342', discount_tag: '33% OFF' %}
-        {% render 'purelane-product-card', title: 'Tap & Limescale Remover', price: '₹249', compare_price: '₹349', badge: 'POPULAR', icon_class: 'p-tap', rating: '4.8', reviews_count: '219', discount_tag: '28% OFF' %}
-        {% render 'purelane-product-card', title: 'Copper, Bronze & Brass Cleaner', price: '₹299', compare_price: '₹399', badge: 'NEW', icon_class: 'p-mbtl', rating: '4.9', reviews_count: '154', discount_tag: '25% OFF' %}
-        {% render 'purelane-product-card', title: 'Ultra-Concentrated Plant-Based Botanical Laundry Detergent for Delicate Fabrics and Sensitive Skin', price: '₹499', compare_price: '₹649', badge: 'LONG TITLE', icon_class: 'p-laundry', rating: '4.7', reviews_count: '98', discount_tag: '23% OFF' %}
-        {% render 'purelane-product-card', title: 'Neem-Powered Herbal Floor Cleaner', price: '₹199', compare_price: '₹299', badge: 'SOLD OUT', icon_class: 'p-floor', rating: '4.9', reviews_count: '412', discount_tag: '33% OFF' %}
-        {% render 'purelane-product-card', title: 'All-Natural Citrus Dishwash Gel', price: '₹179', compare_price: '₹229', badge: 'NO IMAGE', icon_class: '', rating: '4.6', reviews_count: '87', discount_tag: '21% OFF' %}
-        {% render 'purelane-product-card', title: 'Non-Toxic Toilet Cleaner', price: '₹219', compare_price: '₹299', badge: 'HERO', icon_class: 'p-toilet', rating: '4.8', reviews_count: '176', discount_tag: '26% OFF' %}
-        {% render 'purelane-product-card', title: 'Multi-Surface Disinfectant Spray', price: '₹259', compare_price: '₹329', badge: 'ESSENTIAL', icon_class: 'p-tbtl', rating: '4.9', reviews_count: '305', discount_tag: '21% OFF' %}
+        <!-- Mock Fallback Product Grid (8 Products matching screenshot) -->
+        {% render 'purelane-product-card', title: 'Tap cleaner & limescale remover', price: '₹200', compare_price: '₹299', badge: 'BEST SELLER', icon_class: 'p-tap', rating: '4.8', reviews_count: '237', discount_tag: '33% off' %}
+        {% render 'purelane-product-card', title: 'Kitchen cleaner, foaming', price: '₹200', compare_price: '₹299', badge: 'BEST SELLER', icon_class: 'p-kitchen', rating: '4.8', reviews_count: '254', discount_tag: '33% off' %}
+        {% render 'purelane-product-card', title: 'Copper, bronze & brass cleaner', price: '₹200', compare_price: '₹299', badge: 'TOP RATED', icon_class: 'p-metal', rating: '4.8', reviews_count: '231', discount_tag: '33% off' %}
+        {% render 'purelane-product-card', title: 'Washing machine cleaner & descaler', price: '₹200', compare_price: '₹299', badge: 'NEW', icon_class: 'p-wm', rating: '4.8', reviews_count: '183', discount_tag: '33% off' %}
+        {% render 'purelane-product-card', title: 'Tap cleaner & limescale remover', price: '₹200', compare_price: '₹299', badge: 'BEST SELLER', icon_class: 'p-tap', rating: '4.8', reviews_count: '237', discount_tag: '33% off' %}
+        {% render 'purelane-product-card', title: 'Kitchen cleaner, foaming', price: '₹200', compare_price: '₹299', badge: 'BEST SELLER', icon_class: 'p-kitchen', rating: '4.8', reviews_count: '254', discount_tag: '33% off' %}
+        {% render 'purelane-product-card', title: 'Copper, bronze & brass cleaner', price: '₹200', compare_price: '₹299', badge: 'TOP RATED', icon_class: 'p-metal', rating: '4.8', reviews_count: '231', discount_tag: '33% off' %}
+        {% render 'purelane-product-card', title: 'Washing machine cleaner & descaler', price: '₹200', compare_price: '₹299', badge: 'NEW', icon_class: 'p-wm', rating: '4.8', reviews_count: '183', discount_tag: '33% off' %}
       {%- endif -%}
     </div>
   </div>
@@ -62,19 +63,19 @@
       "type": "text",
       "id": "kicker",
       "label": "Kicker Subtitle",
-      "default": "COMPLETE RANGE"
+      "default": "BESTSELLERS"
     },
     {
       "type": "text",
       "id": "title_line1",
       "label": "Heading Line 1",
-      "default": "EVERY ROOM. "
+      "default": "LOVED BY 30,000 HOMES"
     },
     {
       "type": "text",
       "id": "title_line2",
       "label": "Heading Line 2 (Highlighted)",
-      "default": "CLEAN."
+      "default": "BESTSELLERS"
     },
     {
       "type": "checkbox",

@@ -17,9 +17,9 @@
     "purelane_shop": {
       "type": "purelane-shop",
       "settings": {
-        "kicker": "COMPLETE RANGE",
-        "title_line1": "EVERY ROOM. ",
-        "title_line2": "CLEAN.",
+        "kicker": "",
+        "title_line1": "LOVED BY 30,000 HOMES",
+        "title_line2": "",
         "show_rule": true,
         "products_to_show": 8
       }

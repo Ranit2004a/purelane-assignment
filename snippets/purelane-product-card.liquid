@@ -1,9 +1,6 @@
 {% comment %}
   Purelane Reusable Product Card Snippet
-  Handles Shopify Product objects and mock fallbacks with edge cases:
-  - Sold out state (available = false)
-  - Missing image fallback
-  - Long title handling
+  Handles Shopify Product objects and mock fallbacks with edge cases matching reference design.
 {% endcomment %}
 
 {%- assign is_mock = false -%}
@@ -70,7 +67,7 @@
   </h4>
 
   <div class="rate">
-    <b>★ {{ rating | default: '4.9' }}</b> ({{ reviews_count | default: '120' }} reviews)
+    <b>★ {{ rating | default: '4.8' }}</b> · {{ reviews_count | default: '237' }} reviews
   </div>
 
   <div class="pr">
@@ -93,17 +90,17 @@
   </div>
 
   {%- if is_mock -%}
-    <button type="button" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm">Add to Cart</button>
+    <button type="button" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm" style="width:100%;">ADD TO CART</button>
   {%- elsif product.available -%}
     {%- form 'product', product, id: nil, class: 'product-card-form' -%}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
       <button type="submit" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm" style="width:100%;">
-        Add to Cart
+        ADD TO CART
       </button>
     {%- endform -%}
   {%- else -%}
-    <button type="button" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm" disabled style="opacity:0.5; cursor:not-allowed;">
-      Sold Out
+    <button type="button" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm" disabled style="opacity:0.5; cursor:not-allowed; width:100%;">
+      SOLD OUT
     </button>
   {%- endif -%}
 </div>

@@ -2,11 +2,229 @@
   Purelane Custom Footer & Signup Section
 {% endcomment %}
 
-<footer class="purelane-footer-wrapper purelane-body-root">
+<style>
+  .purelane-footer-section {
+    position: relative;
+    z-index: 2;
+    margin-top: 40px;
+    width: 100%;
+  }
+
+  /* SIGNUP CARD BANNER */
+  .purelane-signup-wrap {
+    max-width: 1180px;
+    margin: 0 auto 50px;
+    padding: 0 18px;
+  }
+
+  .purelane-signup-card {
+    padding: clamp(32px, 5vw, 54px) 24px;
+    text-align: center;
+    border-radius: 28px;
+    background: linear-gradient(158deg, rgba(255, 255, 255, 0.88), rgba(236, 230, 247, 0.68));
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid rgba(75, 58, 143, 0.16);
+    box-shadow: 0 20px 54px rgba(58, 44, 112, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  .purelane-signup-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #756a94;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .purelane-signup-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(24px, 4.2vw, 46px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+    color: #17102b;
+    margin-bottom: 10px;
+  }
+
+  .purelane-signup-subtitle {
+    font-size: clamp(14px, 1.4vw, 16.5px);
+    color: #4b3a8f;
+    margin: 0 auto 24px;
+    max-width: 48ch;
+  }
+
+  .purelane-signup-form {
+    display: flex;
+    gap: 12px;
+    max-width: 460px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .purelane-signup-input {
+    flex: 1;
+    min-width: 220px;
+    height: 48px;
+    padding: 0 20px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #17102b;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(75, 58, 143, 0.2);
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  .purelane-signup-input:focus {
+    border-color: #0d5b52;
+    box-shadow: 0 0 0 3px rgba(13, 91, 82, 0.15);
+  }
+
+  .purelane-signup-btn {
+    background: #0d5b52;
+    color: #ffffff;
+    border: none;
+    padding: 0 26px;
+    height: 48px;
+    border-radius: 9999px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 8px 20px rgba(13, 91, 82, 0.25);
+    white-space: nowrap;
+  }
+  .purelane-signup-btn:hover {
+    background: #08423b;
+    transform: translateY(-2px);
+  }
+
+  /* MAIN FOOTER GROUND */
+  .purelane-footer-ground {
+    background: #d6ece0 !important;
+    color: #241a3d !important;
+    padding: 56px 0 32px;
+    border-top: 1px solid rgba(75, 58, 143, 0.08);
+    width: 100%;
+    display: block !important;
+  }
+
+  .purelane-fgrid {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 1fr;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+  @media (min-width: 760px) {
+    .purelane-fgrid {
+      grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+    }
+  }
+
+  .purelane-fcol-brand p {
+    font-size: 13.5px;
+    color: rgba(36, 26, 61, 0.78);
+    line-height: 1.6;
+    margin-top: 14px;
+    max-width: 32ch;
+  }
+
+  .purelane-fcol h5 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #4f7d10 !important;
+    margin-bottom: 16px;
+  }
+
+  .purelane-fcol a, .purelane-fcol p {
+    display: block;
+    font-size: 13.5px;
+    color: rgba(36, 26, 61, 0.78);
+    margin-bottom: 10px;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+  .purelane-fcol a:hover {
+    color: #17102b;
+    transform: translateX(3px);
+  }
+
+  .purelane-fbot {
+    max-width: 1180px;
+    margin: 40px auto 0;
+    padding: 24px 18px 0;
+    border-top: 1px solid rgba(75, 58, 143, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(36, 26, 61, 0.58);
+  }
+  .purelane-fbot a {
+    color: rgba(36, 26, 61, 0.65);
+    text-decoration: none;
+  }
+  .purelane-fbot a:hover {
+    color: #17102b;
+  }
+
+  .purelane-footer-brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #17102b;
+  }
+  .purelane-footer-brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(201, 118, 29, 0.12);
+    border: 1px solid rgba(201, 118, 29, 0.28);
+    display: grid;
+    place-items: center;
+  }
+  .purelane-footer-brand-txt {
+    display: flex;
+    flex-direction: column;
+  }
+  .purelane-footer-brand-n1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #17102b;
+    line-height: 1;
+  }
+  .purelane-footer-brand-n2 {
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #756a94;
+    margin-top: 3px;
+  }
+</style>
+
+<div class="purelane-footer-section">
   <!-- SIGNUP BANNER CARD -->
   {%- if section.settings.show_signup -%}
-    <div class="wrap purelane-wrap">
-      <div class="purelane-signup-card rv">
+    <div class="purelane-signup-wrap">
+      <div class="purelane-signup-card">
         {%- if section.settings.signup_kicker != blank -%}
           <span class="purelane-signup-kicker">{{ section.settings.signup_kicker | escape }}</span>
         {%- endif -%}
@@ -36,20 +254,21 @@
   {%- endif -%}
 
   <!-- FOOTER CONTENT ROOT -->
-  <div class="purelane-footer-root">
+  <footer class="purelane-footer-ground">
     <div class="purelane-fgrid">
       <!-- COLUMN 1: BRAND LOGO & INFO -->
       <div class="purelane-fcol purelane-fcol-brand">
-        <a class="purelane-logo-badge" href="{{ routes.root_url }}">
-          <span class="purelane-logo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:#c9761d;">
+        <a class="purelane-footer-brand-logo" href="{{ routes.root_url }}">
+          <span class="purelane-footer-brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;color:#c9761d;">
               <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
               <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+              <path d="M12 21v-6"/>
             </svg>
           </span>
-          <span class="purelane-logo-text">
-            <span class="purelane-brand-title">PURELANE</span>
-            <span class="purelane-brand-sub">CLEAN, SIMPLY</span>
+          <span class="purelane-footer-brand-txt">
+            <span class="purelane-footer-brand-n1">PURELANE</span>
+            <span class="purelane-footer-brand-n2">CLEAN, SIMPLY</span>
           </span>
         </a>
         <p>Effective cleaning, powered by nature.<br>Made for Indian homes since day one.</p>
@@ -80,7 +299,7 @@
         <h5>GET IN TOUCH</h5>
         <a href="mailto:hello@purelane.com">hello@purelane.com</a>
         <a href="tel:+919930123234">+91 9930 123 234</a>
-        <p style="font-size:12px;color:rgba(36,26,61,0.5);">Purelane Eco Products Pvt Ltd</p>
+        <p style="font-size:12px;color:rgba(36,26,61,0.5);margin-top:6px;">Purelane Eco Products Pvt Ltd</p>
       </div>
     </div>
 
@@ -94,8 +313,8 @@
         <a href="#shop">Contact</a>
       </span>
     </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
 {% schema %}
 {

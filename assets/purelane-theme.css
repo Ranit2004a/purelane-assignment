@@ -5,6 +5,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
 :root {
   --ink: #f4f0fb;
   --deep: #e2daf3;
@@ -71,22 +76,26 @@
 .purelane-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 18px; }
 
 /* Dynamic Background Scenes & Water Engine (Sunlit Shallow Water V2) */
-.scenes { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: #eee7fb; }
+html, body, .gradient, main, #MainContent, .content-for-layout, .shopify-section {
+  background: transparent !important;
+}
+
+.scenes { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: #c9ebd4; }
 .scene { position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease; }
 .scene.on { opacity: 1; }
-.s1 { background: linear-gradient(178deg,#fbfffb 0%,#eafaec 24%,#d6f1dc 54%,#bfe8ca 100%); }
-.s2 { background: linear-gradient(178deg,#f6fdf7 0%,#e3f7e7 26%,#cbedd4 58%,#b2e2c2 100%); }
-.s3 { background: linear-gradient(178deg,#f0fbf2 0%,#d9f2df 28%,#bde6c8 60%,#a2d9b6 100%); }
-.s4 { background: linear-gradient(178deg,#e9f8ec 0%,#cdedd6 30%,#addcbe 62%,#8ecdaa 100%); }
+.s1 { background: linear-gradient(178deg, #d2f4dd 0%, #baefcb 26%, #a1e8b7 58%, #88dfa2 100%); }
+.s2 { background: linear-gradient(178deg, #c8eed4 0%, #b0e8c2 26%, #97e1ae 58%, #7ed898 100%); }
+.s3 { background: linear-gradient(178deg, #beebd0 0%, #a4e3b9 28%, #8bd9a5 60%, #70cf91 100%); }
+.s4 { background: linear-gradient(178deg, #b4e7c7 0%, #9adcb0 30%, #80d199 62%, #65c582 100%); }
 
-.water { position: absolute; inset: -14% -10%; pointer-events: none; transition: opacity 1.2s ease; }
-.wl { position: absolute; inset: 0; will-change: transform; translate: var(--px,0) var(--py,0); }
+.water { position: absolute; inset: -14% -10%; pointer-events: none; transition: opacity 1.2s ease; opacity: 1 !important; }
+.wl { position: absolute; inset: 0; will-change: transform; transform: translate3d(var(--px, 0px), var(--py, 0px), 0); }
 .wl .sv { width: 100%; height: 100%; }
-.wl-a { mix-blend-mode: soft-light; opacity: 1; animation: drift-a 34s linear infinite; }
-.wl-a .sv { filter: contrast(1.25); }
-.wl-b { mix-blend-mode: overlay; opacity: .66; animation: drift-b 23s linear infinite; }
-.wl-c { mix-blend-mode: overlay; opacity: .6; animation: shaft-sway 19s ease-in-out infinite; }
-.wl-s { mix-blend-mode: overlay; opacity: .72; animation: surface 11s ease-in-out infinite; transform-origin: 50% 0; }
+.wl-a { mix-blend-mode: overlay; opacity: 1; animation: drift-a 34s linear infinite; }
+.wl-a .sv { filter: contrast(1.35) brightness(1.1); }
+.wl-b { mix-blend-mode: overlay; opacity: .85; animation: drift-b 23s linear infinite; }
+.wl-c { mix-blend-mode: overlay; opacity: .75; animation: shaft-sway 19s ease-in-out infinite; }
+.wl-s { mix-blend-mode: overlay; opacity: .85; animation: surface 11s ease-in-out infinite; transform-origin: 50% 0; }
 
 @keyframes drift-a {
   0% { transform: translate3d(-3%,0,0) scale(1.06); }
@@ -223,7 +232,7 @@
   height: 150px; border-radius: 14px; margin-bottom: 14px; display: grid; place-items: center; position: relative; overflow: hidden;
   background: linear-gradient(160deg,rgba(236,230,247,.12),rgba(75,58,143,.2)); border: 1px solid rgba(236,230,247,.14);
 }
-.card .shot svg { height: 122px; width: auto; }
+.card .shot svg, .card .shot .pimg { height: 122px; width: auto; filter: drop-shadow(0 12px 18px rgba(1,24,22,.25)); }
 .card .pill {
   position: absolute; top: 9px; left: 9px; font-size: 8.5px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
   padding: 4px 9px; border-radius: 999px; background: rgba(23,16,43,.6); border: 1px solid rgba(240,160,60,.32); color: var(--accent); z-index: 2;
