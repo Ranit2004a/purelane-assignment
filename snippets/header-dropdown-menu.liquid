@@ -8,8 +8,8 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     <li>
-      <a id="HeaderMenu-hero" href="{{ routes.root_url }}#top" class="header__menu-item list-menu__item link link--text focus-inset">
-        <span>Hero</span>
+      <a id="HeaderMenu-home" href="{{ routes.root_url }}#top" class="header__menu-item list-menu__item link link--text focus-inset">
+        <span>Home</span>
       </a>
     </li>
     <li>
@@ -32,15 +32,19 @@
         <span>Reviews</span>
       </a>
     </li>
-    {%- for link in section.settings.menu.links -%}
-      {%- assign link_title_dn = link.title | downcase -%}
-      {%- unless link_title_dn == 'home' or link_title_dn == 'catalog' -%}
-        <li>
-          <a id="HeaderMenu-{{ link.handle }}" href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset">
-            <span>{{ link.title | escape }}</span>
-          </a>
-        </li>
-      {%- endunless -%}
-    {%- endfor -%}
+    {%- if section.settings.menu != blank -%}
+      {%- for link in section.settings.menu.links -%}
+        {%- assign link_title_dn = link.title | downcase -%}
+        {%- unless link_title_dn == 'home' or link_title_dn == 'catalog' or link_title_dn == 'hero' or link_title_dn == 'shop' or link_title_dn == 'combos' or link_title_dn == 'bundles' or link_title_dn == 'reviews' -%}
+          <li>
+            <a id="HeaderMenu-{{ link.handle }}" href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset">
+              <span>{{ link.title | escape }}</span>
+            </a>
+          </li>
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
   </ul>
 </nav>
+
+
