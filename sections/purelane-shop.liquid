@@ -1,0 +1,111 @@
+{% comment %}
+  Purelane Shop / Product Grid Section
+  Renders responsive grid of products using purelane-product-card snippet.
+{% endcomment %}
+
+<section class="sec purelane-body-root" id="shop" data-scene="3">
+  <div class="wrap purelane-wrap">
+    <div class="panel-head rv">
+      {%- if section.settings.kicker != blank -%}
+        <span class="kicker purelane-kicker">{{ section.settings.kicker | escape }}</span>
+      {%- endif -%}
+
+      <h2 class="d2 purelane-d2">
+        {{ section.settings.title_line1 | escape }}
+        {%- if section.settings.title_line2 != blank -%}
+          <span class="lime purelane-lime">{{ section.settings.title_line2 | escape }}</span>
+        {%- endif -%}
+      </h2>
+
+      {%- if section.settings.show_rule -%}
+        <div class="rule">
+          <i></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/>
+          </svg>
+          <i></i>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="shelf">
+      {%- if section.settings.product_list != blank -%}
+        {%- for prod in section.settings.product_list -%}
+          {% render 'purelane-product-card', product: prod %}
+        {%- endfor -%}
+      {%- elsif section.settings.collection != blank -%}
+        {%- for prod in section.settings.collection.products limit: section.settings.products_to_show -%}
+          {% render 'purelane-product-card', product: prod %}
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Mock Fallback Product Grid (8 Products matching assignment spec) -->
+        {% render 'purelane-product-card', title: 'Foaming Kitchen Cleaner', price: '₹200', compare_price: '₹299', badge: 'BESTSELLER', icon_class: 'p-kitchen', rating: '4.9', reviews_count: '342', discount_tag: '33% OFF' %}
+        {% render 'purelane-product-card', title: 'Tap & Limescale Remover', price: '₹249', compare_price: '₹349', badge: 'POPULAR', icon_class: 'p-tap', rating: '4.8', reviews_count: '219', discount_tag: '28% OFF' %}
+        {% render 'purelane-product-card', title: 'Copper, Bronze & Brass Cleaner', price: '₹299', compare_price: '₹399', badge: 'NEW', icon_class: 'p-mbtl', rating: '4.9', reviews_count: '154', discount_tag: '25% OFF' %}
+        {% render 'purelane-product-card', title: 'Ultra-Concentrated Plant-Based Botanical Laundry Detergent for Delicate Fabrics and Sensitive Skin', price: '₹499', compare_price: '₹649', badge: 'LONG TITLE', icon_class: 'p-laundry', rating: '4.7', reviews_count: '98', discount_tag: '23% OFF' %}
+        {% render 'purelane-product-card', title: 'Neem-Powered Herbal Floor Cleaner', price: '₹199', compare_price: '₹299', badge: 'SOLD OUT', icon_class: 'p-floor', rating: '4.9', reviews_count: '412', discount_tag: '33% OFF' %}
+        {% render 'purelane-product-card', title: 'All-Natural Citrus Dishwash Gel', price: '₹179', compare_price: '₹229', badge: 'NO IMAGE', icon_class: '', rating: '4.6', reviews_count: '87', discount_tag: '21% OFF' %}
+        {% render 'purelane-product-card', title: 'Non-Toxic Toilet Cleaner', price: '₹219', compare_price: '₹299', badge: 'HERO', icon_class: 'p-toilet', rating: '4.8', reviews_count: '176', discount_tag: '26% OFF' %}
+        {% render 'purelane-product-card', title: 'Multi-Surface Disinfectant Spray', price: '₹259', compare_price: '₹329', badge: 'ESSENTIAL', icon_class: 'p-tbtl', rating: '4.9', reviews_count: '305', discount_tag: '21% OFF' %}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Shop Grid",
+  "tag": "section",
+  "class": "purelane-shop-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "COMPLETE RANGE"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Heading Line 1",
+      "default": "EVERY ROOM. "
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Heading Line 2 (Highlighted)",
+      "default": "CLEAN."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rule",
+      "label": "Show Decorative Rule",
+      "default": true
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Source Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Select Products directly"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Shop Grid"
+    }
+  ]
+}
+{% endschema %}

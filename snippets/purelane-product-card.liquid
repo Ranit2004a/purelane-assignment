@@ -1,0 +1,109 @@
+{% comment %}
+  Purelane Reusable Product Card Snippet
+  Handles Shopify Product objects and mock fallbacks with edge cases:
+  - Sold out state (available = false)
+  - Missing image fallback
+  - Long title handling
+{% endcomment %}
+
+{%- assign is_mock = false -%}
+{%- if product == blank -%}
+  {%- assign is_mock = true -%}
+{%- endif -%}
+
+<div class="glass card rv {% if is_mock == false and product.available == false %}is-sold-out{% endif %}">
+  <div class="shot">
+    {%- if is_mock -%}
+      {%- if badge != blank -%}
+        <span class="pill">{{ badge }}</span>
+      {%- endif -%}
+      {%- if icon_class != blank -%}
+        <span class="pimg {{ icon_class }}" role="img" aria-label="{{ title }}"></span>
+      {%- else -%}
+        <div class="no-image-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="4" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <path d="M21 15l-5-5L5 21" />
+          </svg>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      {%- if product.available == false -%}
+        <span class="pill sold-out-pill">SOLD OUT</span>
+      {%- elsif badge != blank -%}
+        <span class="pill">{{ badge }}</span>
+      {%- elsif product.compare_at_price > product.price -%}
+        {%- assign savings = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        <span class="pill">{{ savings }}% OFF</span>
+      {%- endif -%}
+
+      {%- if product.featured_media != blank -%}
+        <img
+          src="{{ product.featured_media | image_url: width: 300 }}"
+          alt="{{ product.featured_media.alt | default: product.title | escape }}"
+          loading="lazy"
+          width="150"
+          height="150"
+          style="object-fit: contain; max-height: 122px;"
+        >
+      {%- else -%}
+        <!-- Missing Image Edge Case Fallback -->
+        <div class="no-image-placeholder" title="No Image Provided">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(236,230,247,0.5)" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="4" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <path d="M21 15l-5-5L5 21" />
+          </svg>
+          <span style="font-size:9px; color:var(--paper-3); text-transform:uppercase; margin-top:4px;">No Image</span>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  <h4 class="product-card-title" title="{% if is_mock %}{{ title }}{% else %}{{ product.title | escape }}{% endif %}">
+    {%- if is_mock -%}
+      {{ title }}
+    {%- else -%}
+      {{ product.title | escape }}
+    {%- endif -%}
+  </h4>
+
+  <div class="rate">
+    <b>★ {{ rating | default: '4.9' }}</b> ({{ reviews_count | default: '120' }} reviews)
+  </div>
+
+  <div class="pr">
+    {%- if is_mock -%}
+      <strong>{{ price }}</strong>
+      {%- if compare_price != blank -%}
+        <s>{{ compare_price }}</s>
+      {%- endif -%}
+      {%- if discount_tag != blank -%}
+        <em>{{ discount_tag }}</em>
+      {%- endif -%}
+    {%- else -%}
+      <strong>{{ product.price | money }}</strong>
+      {%- if product.compare_at_price > product.price -%}
+        <s>{{ product.compare_at_price | money }}</s>
+        {%- assign sav_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        <em>{{ sav_pct }}% OFF</em>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  {%- if is_mock -%}
+    <button type="button" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm">Add to Cart</button>
+  {%- elsif product.available -%}
+    {%- form 'product', product, id: nil, class: 'product-card-form' -%}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm" style="width:100%;">
+        Add to Cart
+      </button>
+    {%- endform -%}
+  {%- else -%}
+    <button type="button" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm" disabled style="opacity:0.5; cursor:not-allowed;">
+      Sold Out
+    </button>
+  {%- endif -%}
+</div>
