@@ -4,12 +4,14 @@
       "type": "purelane-hero",
       "settings": {
         "show_rule": true,
-        "kicker": "PLANT-POWERED HOMECARE",
-        "title_line1": "DIRT OUT.",
-        "title_line2": "PLANTS IN.",
-        "lede": "High-performance cleaning formulas powered by nature. Non-toxic, biodegradable, and safe for your home & family.",
-        "btn1_text": "Shop Range",
-        "btn2_text": "Build Bundle"
+        "kicker": "",
+        "title_line1": "CLEAN THAT ",
+        "title_line2": "LASTS",
+        "lede": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "btn1_text": "SHOP NOW →",
+        "btn1_link": "#shop",
+        "btn2_text": "HOW IT WORKS",
+        "btn2_link": "#how"
       }
     },
     "purelane_shop": {
@@ -34,10 +36,11 @@
     "purelane_bundles": {
       "type": "purelane-bundles",
       "settings": {
-        "kicker": "SAVINGS TIERS",
-        "title_line1": "BUILD YOUR ",
-        "title_line2": "BUNDLE.",
-        "show_rule": true
+        "kicker": "BUNDLE CATEGORIES",
+        "title_line1": "FIND THE RIGHT BUNDLE ",
+        "title_line2": "FOR YOU",
+        "show_rule": false,
+        "show_trust_bar": true
       }
     },
     "purelane_reviews": {

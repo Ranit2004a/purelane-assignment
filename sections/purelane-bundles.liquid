@@ -1,16 +1,16 @@
 {% comment %}
-  Purelane Bundles Section
-  Renders tier-based bundle builder cards with highlight badge & custom perks.
+  Purelane Bundles & Categories Section
+  Displays Bundle Category cards and Trust Bar matching Purelane UI design.
 {% endcomment %}
 
-<section class="sec purelane-body-root" id="bundles" data-scene="3">
+<section class="sec purelane-body-root" id="categories" data-scene="4">
   <div class="wrap purelane-wrap">
     <div class="panel-head rv">
       {%- if section.settings.kicker != blank -%}
         <span class="kicker purelane-kicker">{{ section.settings.kicker | escape }}</span>
       {%- endif -%}
 
-      <h2 class="d2 purelane-d2">
+      <h2 class="d2 purelane-d2" style="margin-top:12px;">
         {{ section.settings.title_line1 | escape }}
         {%- if section.settings.title_line2 != blank -%}
           <span class="lime purelane-lime">{{ section.settings.title_line2 | escape }}</span>
@@ -28,113 +28,108 @@
       {%- endif -%}
     </div>
 
-    <div class="tiers">
+    <!-- Category Cards Grid -->
+    <div class="cats">
       {%- if section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
-          <div class="glass tier {% if block.settings.is_featured %}best{% endif %} rv" {{ block.shopify_attributes }}>
-            {%- if block.settings.tag != blank -%}
-              <span class="tag">{{ block.settings.tag | escape }}</span>
-            {%- endif -%}
-
-            <div class="qty">
-              {{ block.settings.quantity | escape }}
-              <small>{{ block.settings.quantity_unit | escape }}</small>
-            </div>
-
-            <div class="price">
-              {{ block.settings.price | escape }}
-              {%- if block.settings.compare_price != blank -%}
-                <s>{{ block.settings.compare_price | escape }}</s>
-              {%- endif -%}
-            </div>
-
-            {%- if block.settings.perks != blank -%}
-              {%- assign perks_arr = block.settings.perks | newline_to_br | split: '<br />' -%}
-              <ul>
-                {%- for perk in perks_arr -%}
-                  {%- assign clean_perk = perk | strip -%}
-                  {%- if clean_perk != blank -%}
-                    <li>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                      {{ clean_perk }}
-                    </li>
-                  {%- endif -%}
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-
-            <a
-              href="{{ block.settings.button_link | default: '#shop' }}"
-              class="btn {% if block.settings.is_featured %}btn-primary purelane-btn-primary{% else %}btn-ghost purelane-btn-ghost{% endif %} btn-sm purelane-btn purelane-btn-sm"
-            >
-              {{ block.settings.button_text | escape }}
+          {%- if block.type == 'category' -%}
+            <a class="glass cat rv" href="{{ block.settings.link | default: '#combos' }}" {{ block.shopify_attributes }}>
+              <span class="ph">
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 350 }}" alt="{{ block.settings.title | escape }}" class="pimg" loading="lazy">
+                {%- else -%}
+                  <span class="pimg {{ block.settings.icon_class | default: 'p-kitchen' }}" role="img" aria-label="{{ block.settings.title | escape }}"></span>
+                {%- endif -%}
+              </span>
+              <span class="txt">
+                <h4>{{ block.settings.title | escape }}</h4>
+                <p>{{ block.settings.subtitle | escape }}</p>
+              </span>
             </a>
-          </div>
+          {%- endif -%}
         {%- endfor -%}
       {%- else -%}
-        <!-- Default Fallback Tiers -->
-        <div class="glass tier rv">
-          <span class="tag">Starter Tier</span>
-          <div class="qty">1 <small>Bottle</small></div>
-          <div class="price">₹200 <s>₹299</s></div>
-          <ul>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Choose any 1 product
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Standard shipping
-            </li>
-          </ul>
-          <a href="#shop" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm">Select 1 Item</a>
-        </div>
+        <!-- Default Fallback Cards matching reference design -->
+        <a class="glass cat rv" href="#combos">
+          <span class="ph">
+            <span class="pimg p-kitchen" role="img" aria-label="Kitchen Bundle"></span>
+          </span>
+          <span class="txt">
+            <h4>KITCHEN BUNDLE</h4>
+            <p>Grease, dishes &amp; more</p>
+          </span>
+        </a>
 
-        <div class="glass tier best rv">
-          <span class="tag">Popular Tier — 41% Off</span>
-          <div class="qty">2 <small>Bottles</small></div>
-          <div class="price">₹349 <s>₹598</s></div>
-          <ul>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Mix & match any 2 items
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Free shipping India-wide
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Save ₹249 instantly
-            </li>
-          </ul>
-          <a href="#shop" class="btn btn-primary btn-sm purelane-btn purelane-btn-primary purelane-btn-sm">Build 2 Pack</a>
-        </div>
+        <a class="glass cat rv rv-d1" href="#combos">
+          <span class="ph">
+            <span class="pimg p-toilet" role="img" aria-label="Bathroom Bundle"></span>
+          </span>
+          <span class="txt">
+            <h4>BATHROOM BUNDLE</h4>
+            <p>Deep clean &amp; disinfect</p>
+          </span>
+        </a>
 
-        <div class="glass tier rv">
-          <span class="tag">Ultimate Tier — 44% Off</span>
-          <div class="qty">3 <small>Bottles</small></div>
-          <div class="price">₹499 <s>₹897</s></div>
-          <ul>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Pick any 3 products
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Free express shipping
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Maximum savings (Save ₹398)
-            </li>
-          </ul>
-          <a href="#shop" class="btn btn-ghost btn-sm purelane-btn purelane-btn-ghost purelane-btn-sm">Build 3 Pack</a>
-        </div>
+        <a class="glass cat rv rv-d2" href="#combos">
+          <span class="ph">
+            <span class="pimg p-laundry" role="img" aria-label="Laundry Bundle"></span>
+          </span>
+          <span class="txt">
+            <h4>LAUNDRY BUNDLE</h4>
+            <p>Softer, fresher wash</p>
+          </span>
+        </a>
+
+        <a class="glass cat rv rv-d3" href="#combos">
+          <span class="ph">
+            <span class="pimg p-tap" role="img" aria-label="Hard Water Bundle"></span>
+          </span>
+          <span class="txt">
+            <h4>HARD WATER BUNDLE</h4>
+            <p>Melt away limescale</p>
+          </span>
+        </a>
       {%- endif -%}
     </div>
+
+    <!-- Feature Trust Bar Pill -->
+    {%- if section.settings.show_trust_bar -%}
+      <div class="trust-bar-wrapper">
+        <div class="glass trust rv">
+          <div class="trust-i">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
+              <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+            </svg>
+            <span>PLANT DERIVED<br>FORMULAS</span>
+          </div>
+
+          <div class="trust-i">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/>
+              <path d="M4 8 6.5 3h11L20 8M9.5 12h5"/>
+            </svg>
+            <span>RECYCLABLE<br>PACKAGING</span>
+          </div>
+
+          <div class="trust-i">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/>
+            </svg>
+            <span>SAFE FOR<br>KIDS &amp; PETS</span>
+          </div>
+
+          <div class="trust-i">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="8.6"/>
+              <path d="M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z"/>
+            </svg>
+            <span>MADE IN<br>INDIA</span>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
   </div>
 </section>
 
@@ -148,84 +143,65 @@
       "type": "text",
       "id": "kicker",
       "label": "Kicker Subtitle",
-      "default": "SAVINGS TIERS"
+      "default": "BUNDLE CATEGORIES"
     },
     {
       "type": "text",
       "id": "title_line1",
       "label": "Heading Line 1",
-      "default": "BUILD YOUR "
+      "default": "FIND THE RIGHT BUNDLE "
     },
     {
       "type": "text",
       "id": "title_line2",
-      "label": "Heading Line 2 (Highlighted)",
-      "default": "BUNDLE."
+      "label": "Heading Line 2",
+      "default": "FOR YOU"
     },
     {
       "type": "checkbox",
       "id": "show_rule",
-      "label": "Show Decorative Rule",
+      "label": "Show Decorative Line",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_bar",
+      "label": "Show Trust Feature Bar",
       "default": true
     }
   ],
   "blocks": [
     {
-      "type": "tier",
-      "name": "Bundle Tier Block",
+      "type": "category",
+      "name": "Bundle Category Card",
       "settings": [
         {
-          "type": "checkbox",
-          "id": "is_featured",
-          "label": "Highlight as Best/Popular Tier",
-          "default": false
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "KITCHEN BUNDLE"
         },
         {
           "type": "text",
-          "id": "tag",
-          "label": "Tier Badge Tag",
-          "default": "Popular Tier — 41% Off"
+          "id": "subtitle",
+          "label": "Category Subtitle",
+          "default": "Grease, dishes & more"
         },
         {
           "type": "text",
-          "id": "quantity",
-          "label": "Quantity Number",
-          "default": "2"
+          "id": "icon_class",
+          "label": "CSS Sprite Class (p-kitchen, p-toilet, p-laundry, p-tap)",
+          "default": "p-kitchen"
         },
         {
-          "type": "text",
-          "id": "quantity_unit",
-          "label": "Unit Label",
-          "default": "Bottles"
-        },
-        {
-          "type": "text",
-          "id": "price",
-          "label": "Tier Offer Price",
-          "default": "₹349"
-        },
-        {
-          "type": "text",
-          "id": "compare_price",
-          "label": "Tier Original Price",
-          "default": "₹598"
-        },
-        {
-          "type": "textarea",
-          "id": "perks",
-          "label": "Perks List (One per line)",
-          "default": "Mix & match any 2 items\nFree shipping India-wide\nSave ₹249 instantly"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "Build 2 Pack"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image (Optional)"
         },
         {
           "type": "url",
-          "id": "button_link",
-          "label": "Button Target Link"
+          "id": "link",
+          "label": "Card Target Link"
         }
       ]
     }
@@ -235,39 +211,35 @@
       "name": "Purelane Bundles",
       "blocks": [
         {
-          "type": "tier",
+          "type": "category",
           "settings": {
-            "is_featured": false,
-            "tag": "Starter Tier",
-            "quantity": "1",
-            "quantity_unit": "Bottle",
-            "price": "₹200",
-            "compare_price": "₹299",
-            "button_text": "Select 1 Item"
+            "title": "KITCHEN BUNDLE",
+            "subtitle": "Grease, dishes & more",
+            "icon_class": "p-kitchen"
           }
         },
         {
-          "type": "tier",
+          "type": "category",
           "settings": {
-            "is_featured": true,
-            "tag": "Popular Tier — 41% Off",
-            "quantity": "2",
-            "quantity_unit": "Bottles",
-            "price": "₹349",
-            "compare_price": "₹598",
-            "button_text": "Build 2 Pack"
+            "title": "BATHROOM BUNDLE",
+            "subtitle": "Deep clean & disinfect",
+            "icon_class": "p-toilet"
           }
         },
         {
-          "type": "tier",
+          "type": "category",
           "settings": {
-            "is_featured": false,
-            "tag": "Ultimate Tier — 44% Off",
-            "quantity": "3",
-            "quantity_unit": "Bottles",
-            "price": "₹499",
-            "compare_price": "₹897",
-            "button_text": "Build 3 Pack"
+            "title": "LAUNDRY BUNDLE",
+            "subtitle": "Softer, fresher wash",
+            "icon_class": "p-laundry"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "HARD WATER BUNDLE",
+            "subtitle": "Melt away limescale",
+            "icon_class": "p-tap"
           }
         }
       ]

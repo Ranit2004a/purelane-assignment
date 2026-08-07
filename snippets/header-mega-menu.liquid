@@ -34,7 +34,7 @@
     </li>
     {%- for link in section.settings.menu.links -%}
       {%- assign link_title_dn = link.title | downcase -%}
-      {%- unless link_title_dn == 'home' or link_title_dn == 'catalog' -%}
+      {%- unless link_title_dn == 'home' or link_title_dn == 'catalog' or link_title_dn == 'hero' or link_title_dn == 'shop' or link_title_dn == 'combos' or link_title_dn == 'bundles' or link_title_dn == 'reviews' or link_title_dn == 'contact' -%}
         <li>
           <a id="HeaderMegaMenu-{{ link.handle }}" href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset">
             <span>{{ link.title | escape }}</span>
