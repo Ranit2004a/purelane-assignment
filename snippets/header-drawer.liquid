@@ -21,7 +21,34 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              <li>
+                <a href="{{ routes.root_url }}#top" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Hero
+                </a>
+              </li>
+              <li>
+                <a href="{{ routes.root_url }}#shop" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Shop
+                </a>
+              </li>
+              <li>
+                <a href="{{ routes.root_url }}#combos" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Combos
+                </a>
+              </li>
+              <li>
+                <a href="{{ routes.root_url }}#bundles" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Bundles
+                </a>
+              </li>
+              <li>
+                <a href="{{ routes.root_url }}#reviews" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Reviews
+                </a>
+              </li>
               {%- for link in section.settings.menu.links -%}
+                {%- assign link_title_dn = link.title | downcase -%}
+                {%- unless link_title_dn == 'home' or link_title_dn == 'catalog' -%}
                 <li>
                   {%- if link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
@@ -132,6 +159,7 @@
                     </a>
                   {%- endif -%}
                 </li>
+                {%- endunless -%}
               {%- endfor -%}
             </ul>
           </nav>

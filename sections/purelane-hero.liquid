@@ -3,8 +3,23 @@
   Modular, merchant-editable hero section with interactive product highlight slides.
 {% endcomment %}
 
-<section class="hero purelane-body-root" data-scene="1" id="purelane-hero-{{ section.id }}">
+<section class="hero purelane-body-root" data-scene="1" id="top">
   <div class="hero-grid wrap">
+    <div class="badges glass-2" aria-label="Product promises">
+      <div class="badge">
+        <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></span>
+        <span>Plant<br>powered</span>
+      </div>
+      <div class="badge">
+        <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg></span>
+        <span>Safe for<br>kids &amp; pets</span>
+      </div>
+      <div class="badge">
+        <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M6.4 17.6 17.6 6.4"/></svg></span>
+        <span>Zero harsh<br>chemicals</span>
+      </div>
+    </div>
+
     <div class="hero-copy rv rv-d1">
       {%- if section.settings.show_rule -%}
         <div class="rule">
@@ -117,6 +132,25 @@
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroSection = document.getElementById('purelane-hero-{{ section.id }}');
+      if (!heroSection) return;
+      const dots = heroSection.querySelectorAll('#hdots button');
+      const slides = heroSection.querySelectorAll('#hstage .hslide');
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          dots.forEach(d => d.classList.remove('on'));
+          slides.forEach(s => s.classList.remove('on'));
+          dot.classList.add('on');
+          if (slides[index]) {
+            slides[index].classList.add('on');
+          }
+        });
+      });
+    });
+  </script>
 </section>
 
 {% schema %}
