@@ -1,0 +1,248 @@
+{% comment %}
+  Purelane Hero Section
+  Modular, merchant-editable hero section with interactive product highlight slides.
+{% endcomment %}
+
+<section class="hero purelane-body-root" data-scene="1" id="purelane-hero-{{ section.id }}">
+  <div class="hero-grid wrap">
+    <div class="hero-copy rv rv-d1">
+      {%- if section.settings.show_rule -%}
+        <div class="rule">
+          <i></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/>
+          </svg>
+          <i></i>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.kicker != blank -%}
+        <span class="kicker purelane-kicker">{{ section.settings.kicker | escape }}</span>
+      {%- endif -%}
+
+      <h1 class="d1 purelane-d1">
+        {{ section.settings.title_line1 | escape }}
+        {%- if section.settings.title_line2 != blank -%}
+          <br><span class="lime purelane-lime">{{ section.settings.title_line2 | escape }}</span>
+        {%- endif -%}
+      </h1>
+
+      {%- if section.settings.lede != blank -%}
+        <p class="lede purelane-lede">{{ section.settings.lede | escape }}</p>
+      {%- endif -%}
+
+      <div class="hero-cta">
+        {%- if section.settings.btn1_text != blank -%}
+          <a href="{{ section.settings.btn1_link | default: '#shop' }}" class="btn btn-primary purelane-btn purelane-btn-primary">
+            {{ section.settings.btn1_text | escape }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.btn2_text != blank -%}
+          <a href="{{ section.settings.btn2_link | default: '#bundles' }}" class="btn btn-ghost purelane-btn purelane-btn-ghost">
+            {{ section.settings.btn2_text | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hero-prod" id="heroProd">
+      <div class="hstage" id="hstage">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'slide' -%}
+              <div class="hslide hs{{ forloop.index }} {% if forloop.first %}on{% endif %}" data-n="{{ forloop.index }}" {{ block.shopify_attributes }}>
+                {%- case forloop.index -%}
+                  {%- when 1 -%}
+                    <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+                  {%- when 2 -%}
+                    <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
+                    <span class="hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
+                  {%- else -%}
+                    <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
+                    <span class="hp p-mbtl b d2" role="img" aria-label="Purelane metal cleaner bottle"></span>
+                    <span class="hp p-kbtl c d3" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
+                {%- endcase -%}
+
+                <div class="glass-2 ptag">
+                  <span class="lbl">{{ block.settings.label | escape }}</span>
+                  <span class="val">
+                    <strong>{{ block.settings.price | escape }}</strong>
+                    {%- if block.settings.compare_price != blank -%}
+                      <s>{{ block.settings.compare_price | escape }}</s>
+                    {%- endif -%}
+                  </span>
+                  {%- if block.settings.badge != blank -%}
+                    <span class="cut">{{ block.settings.badge | escape }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- else -%}
+          <!-- Default Slides Fallback -->
+          <div class="hslide hs1 on" data-n="1">
+            <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+            <div class="glass-2 ptag">
+              <span class="lbl">Single bottle</span>
+              <span class="val"><strong>₹200</strong><s>₹299</s></span>
+              <span class="cut">33% off</span>
+            </div>
+          </div>
+          <div class="hslide hs2" data-n="2">
+            <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner"></span>
+            <span class="hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner"></span>
+            <div class="glass-2 ptag">
+              <span class="lbl">Any 2 products</span>
+              <span class="val"><strong>₹349</strong><s>₹598</s></span>
+              <span class="cut">Save ₹249</span>
+            </div>
+          </div>
+          <div class="hslide hs3" data-n="3">
+            <span class="hp p-tbtl a d1"></span>
+            <span class="hp p-mbtl b d2"></span>
+            <span class="hp p-kbtl c d3"></span>
+            <div class="glass-2 ptag">
+              <span class="lbl">Any 3 products</span>
+              <span class="val"><strong>₹499</strong><s>₹897</s></span>
+              <span class="cut">Save ₹398</span>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="hdots" id="hdots">
+        {%- assign slide_count = section.blocks.size | default: 3 -%}
+        {%- for i in (1..slide_count) -%}
+          <button type="button" class="{% if forloop.first %}on{% endif %}" aria-label="Show {{ i }} product(s)"></button>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Hero",
+  "tag": "section",
+  "class": "purelane-hero-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_rule",
+      "label": "Show Top Decorative Rule",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "PLANT-POWERED HOMECARE"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Heading Line 1",
+      "default": "DIRT OUT."
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Heading Line 2 (Highlighted)",
+      "default": "PLANTS IN."
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Lead Description",
+      "default": "High-performance cleaning formulas powered by nature. Non-toxic, biodegradable, and safe for your home & family."
+    },
+    {
+      "type": "text",
+      "id": "btn1_text",
+      "label": "Primary Button Text",
+      "default": "Shop Range"
+    },
+    {
+      "type": "url",
+      "id": "btn1_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "btn2_text",
+      "label": "Secondary Button Text",
+      "default": "Build Bundle"
+    },
+    {
+      "type": "url",
+      "id": "btn2_link",
+      "label": "Secondary Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Product Highlight Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Bundle Label",
+          "default": "Single bottle"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Offer Price",
+          "default": "₹200"
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Original Price",
+          "default": "₹299"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Savings Badge",
+          "default": "33% off"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Hero",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Single bottle",
+            "price": "₹200",
+            "compare_price": "₹299",
+            "badge": "33% off"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Any 2 products",
+            "price": "₹349",
+            "compare_price": "₹598",
+            "badge": "Save ₹249"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Any 3 products",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "badge": "Save ₹398"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
