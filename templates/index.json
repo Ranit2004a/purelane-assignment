@@ -188,14 +188,34 @@
         "title_line2": "SAY.",
         "show_rule": true
       }
+    },
+    "purelane_before_after": {
+      "type": "purelane-before-after",
+      "settings": {
+        "kicker": "SEE THE PROOF IN ACTION",
+        "title": "BEFORE & AFTER CLEANING RESULTS",
+        "description": "Drag the slider below to see how Purelane dissolves stubborn grease, water stains, and grime in seconds without harsh chemicals."
+      }
+    },
+    "purelane_social_proof": {
+      "type": "purelane-social-proof",
+      "settings": {
+        "enable_mobile_sticky_atc": true,
+        "sticky_title": "Kitchen Essentials Combo",
+        "sticky_price": "₹499",
+        "sticky_compare_price": "₹897",
+        "sticky_btn_text": "ADD TO CART"
+      }
     }
   },
   "order": [
     "purelane_hero",
     "purelane_shop",
+    "purelane_before_after",
     "purelane_combos",
     "purelane_ingredients",
     "purelane_bundles",
-    "purelane_reviews"
+    "purelane_reviews",
+    "purelane_social_proof"
   ]
 }

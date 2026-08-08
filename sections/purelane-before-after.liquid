@@ -1,0 +1,174 @@
+{% comment %}
+  Purelane Before & After Stain Remover Interactive Slider Section
+{% endcomment %}
+
+<section class="sec purelane-body-root purelane-before-after-sec" id="purelane-ba-{{ section.id }}">
+  <div class="wrap">
+    <div class="panel-head rv rv-d1">
+      {%- if section.settings.kicker != blank -%}
+        <span class="kicker purelane-kicker">{{ section.settings.kicker | escape }}</span>
+      {%- endif -%}
+      <h2 class="d2 purelane-d2">{{ section.settings.title | escape }}</h2>
+      <p class="lede purelane-lede" style="max-width:580px; margin: 8px auto 0;">
+        {{ section.settings.description | escape }}
+      </p>
+      {%- if section.settings.show_rule -%}
+        <div class="rule" style="margin: 14px auto 0; justify-content: center; max-width: 240px;">
+          <i></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
+            <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+          </svg>
+          <i></i>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="ba-container glass-2 rv rv-d2" id="baContainer-{{ section.id }}">
+      <!-- Before Image (Dirty / Grimy) -->
+      <div class="ba-image ba-before">
+        <div class="ba-overlay-label ba-label-before">{{ section.settings.before_label | default: "BEFORE: Grimy Scum & Grease" }}</div>
+        <svg class="ba-placeholder-svg before-svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="480" fill="#2a1f40"/>
+          <circle cx="200" cy="180" r="140" fill="#4d3222" opacity="0.6"/>
+          <circle cx="500" cy="300" r="180" fill="#3b2d1d" opacity="0.7"/>
+          <path d="M50 80 Q 250 280 450 120 T 750 380" stroke="#5c452b" stroke-width="60" fill="none" opacity="0.55"/>
+          <text x="50%" y="45%" fill="rgba(255,255,255,0.7)" font-family="Outfit, sans-serif" font-size="28" font-weight="800" text-anchor="middle">TOUGH STAIN &amp; GREASE BUILDUP</text>
+          <text x="50%" y="58%" fill="rgba(255,255,255,0.45)" font-family="Inter, sans-serif" font-size="16" text-anchor="middle">Untreated Surface Scum</text>
+        </svg>
+      </div>
+
+      <!-- After Image (Clean Sparkling Finish) -->
+      <div class="ba-image ba-after" id="baAfter-{{ section.id }}">
+        <div class="ba-overlay-label ba-label-after">{{ section.settings.after_label | default: "AFTER: Purelane 10-Sec Clean" }}</div>
+        <svg class="ba-placeholder-svg after-svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="480" fill="#173531"/>
+          <circle cx="300" cy="200" r="220" fill="#00706a" opacity="0.45"/>
+          <circle cx="600" cy="240" r="160" fill="#299388" opacity="0.35"/>
+          <!-- Sparkles -->
+          <polygon points="180,120 186,136 202,142 186,148 180,164 174,148 158,142 174,136" fill="#7bf0d0"/>
+          <polygon points="580,180 585,193 598,198 585,203 580,216 575,203 562,198 575,193" fill="#7bf0d0"/>
+          <polygon points="380,320 384,330 394,334 384,338 380,348 376,338 366,334 376,330" fill="#7bf0d0"/>
+          <text x="50%" y="45%" fill="#ffffff" font-family="Outfit, sans-serif" font-size="28" font-weight="800" text-anchor="middle">SPARKLING PLANT-CLEAN FINISH</text>
+          <text x="50%" y="58%" fill="rgba(230,250,240,0.85)" font-family="Inter, sans-serif" font-size="16" text-anchor="middle">100% Streak-Free &amp; Non-Toxic</text>
+        </svg>
+      </div>
+
+      <!-- Handle Divider -->
+      <div class="ba-handle" id="baHandle-{{ section.id }}">
+        <div class="ba-handle-line"></div>
+        <div class="ba-handle-button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+        <div class="ba-handle-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      function initBA() {
+        const container = document.getElementById('baContainer-{{ section.id }}');
+        const after = document.getElementById('baAfter-{{ section.id }}');
+        const handle = document.getElementById('baHandle-{{ section.id }}');
+        if (!container || !after || !handle) return;
+
+        let isDragging = false;
+
+        function setPosition(x) {
+          const rect = container.getBoundingClientRect();
+          let pos = ((x - rect.left) / rect.width) * 100;
+          pos = Math.max(0, Math.min(100, pos));
+          after.style.clipPath = 'polygon(' + pos + '% 0, 100% 0, 100% 100%, ' + pos + '% 100%)';
+          handle.style.left = pos + '%';
+        }
+
+        function onMove(e) {
+          if (!isDragging) return;
+          const x = e.touches ? e.touches[0].clientX : e.clientX;
+          setPosition(x);
+        }
+
+        function onStart(e) {
+          isDragging = true;
+          onMove(e);
+        }
+
+        function onEnd() {
+          isDragging = false;
+        }
+
+        container.addEventListener('mousedown', onStart);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onEnd);
+
+        container.addEventListener('touchstart', onStart, { passive: true });
+        window.addEventListener('touchmove', onMove, { passive: true });
+        window.addEventListener('touchend', onEnd);
+
+        // Initial 50% split
+        setPosition(container.getBoundingClientRect().left + container.getBoundingClientRect().width * 0.5);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBA);
+      } else {
+        initBA();
+      }
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Before & After",
+  "tag": "section",
+  "class": "purelane-ba-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "SEE THE PROOF IN ACTION"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Title",
+      "default": "BEFORE & AFTER CLEANING RESULTS"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Subheading Description",
+      "default": "Drag the slider below to see how Purelane dissolves stubborn grease, water stains, and grime in seconds without harsh chemicals."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rule",
+      "label": "Show Decorative Rule",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before Label",
+      "default": "BEFORE: Grimy Scum & Grease"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After Label",
+      "default": "AFTER: Purelane 10-Sec Clean"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Before & After"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,89 @@
+{% comment %}
+  Purelane Mobile Sticky Glass ATC Bar Section
+{% endcomment %}
+
+<div class="purelane-body-root">
+  <!-- Mobile Sticky Glass ATC Bar (Bottom Floating Pill) -->
+  {%- if section.settings.enable_mobile_sticky_atc -%}
+    <div class="purelane-mobile-sticky-bar glass-2" id="purelaneMobileStickyBar">
+      <div class="purelane-sticky-info">
+        <span class="purelane-sticky-title">{{ section.settings.sticky_title | default: "Kitchen Essentials Combo" }}</span>
+        <span class="purelane-sticky-price">
+          <strong>{{ section.settings.sticky_price | default: "₹499" }}</strong>
+          {%- if section.settings.sticky_compare_price != blank -%}
+            <s>{{ section.settings.sticky_compare_price | escape }}</s>
+          {%- endif -%}
+        </span>
+      </div>
+      <a href="{{ section.settings.sticky_btn_link | default: '#shop' }}" class="btn btn-primary purelane-btn purelane-btn-primary purelane-sticky-btn">
+        {{ section.settings.sticky_btn_text | default: "ADD TO CART" }}
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+  (function() {
+    // Mobile Sticky ATC Bar Scroll Reveal
+    const stickyBar = document.getElementById('purelaneMobileStickyBar');
+    if (stickyBar) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 450) {
+          stickyBar.classList.add('visible');
+        } else {
+          stickyBar.classList.remove('visible');
+        }
+      }, { passive: true });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Mobile Sticky ATC Bar",
+  "tag": "section",
+  "class": "purelane-mobile-atc-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_sticky_atc",
+      "label": "Enable Mobile Sticky Glass ATC Bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sticky_title",
+      "label": "Sticky Bar Product Title",
+      "default": "Kitchen Essentials Combo"
+    },
+    {
+      "type": "text",
+      "id": "sticky_price",
+      "label": "Sticky Bar Price",
+      "default": "₹499"
+    },
+    {
+      "type": "text",
+      "id": "sticky_compare_price",
+      "label": "Sticky Bar Compare Price",
+      "default": "₹897"
+    },
+    {
+      "type": "text",
+      "id": "sticky_btn_text",
+      "label": "Sticky Bar Button Text",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "url",
+      "id": "sticky_btn_link",
+      "label": "Sticky Bar Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile Sticky ATC Bar"
+    }
+  ]
+}
+{% endschema %}

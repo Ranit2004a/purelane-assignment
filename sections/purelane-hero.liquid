@@ -62,6 +62,22 @@
         <p class="lede purelane-lede">{{ section.settings.lede | escape }}</p>
       {%- endif -%}
 
+      <!-- Feature 4: Live Free Shipping Progress Bar -->
+      <div class="purelane-shipping-meter glass-2">
+        <div class="purelane-shipping-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="2"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+          <span>Add <strong>₹101</strong> more to unlock <strong>FREE Express Shipping!</strong></span>
+        </div>
+        <div class="purelane-shipping-bar-bg">
+          <div class="purelane-shipping-bar-fill" style="width: 78%;"></div>
+        </div>
+      </div>
+
       <div class="hero-cta">
         {%- if section.settings.btn1_text != blank -%}
           <a href="{{ section.settings.btn1_link | default: '#shop' }}" class="btn btn-primary purelane-btn purelane-btn-primary">
@@ -78,6 +94,31 @@
 
     {%- if section.settings.show_product_stage -%}
       <div class="hero-prod" id="heroProd">
+        <!-- Feature 3: Interactive Bottle Ingredient Hotspot Tooltips -->
+        <div class="purelane-hotspot-container">
+          <div class="purelane-hotspot" style="top: 32%; right: 25%;">
+            <div class="purelane-hotspot-dot"></div>
+            <div class="purelane-hotspot-tooltip glass-2">
+              <strong>Coconut Surfactants</strong>
+              <span>Instantly dissolves grease &amp; tough scum</span>
+            </div>
+          </div>
+          <div class="purelane-hotspot" style="top: 55%; right: 45%;">
+            <div class="purelane-hotspot-dot"></div>
+            <div class="purelane-hotspot-tooltip glass-2">
+              <strong>Organic Lemon Oil</strong>
+              <span>Natural fresh citrus aroma without synthetics</span>
+            </div>
+          </div>
+          <div class="purelane-hotspot" style="top: 72%; right: 15%;">
+            <div class="purelane-hotspot-dot"></div>
+            <div class="purelane-hotspot-tooltip glass-2">
+              <strong>100% Non-Toxic</strong>
+              <span>Safe for homes with pets &amp; kids</span>
+            </div>
+          </div>
+        </div>
+
         <div class="hstage" id="hstage">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
@@ -202,7 +243,7 @@
           if (!timer) {
             timer = setInterval(() => {
               goToSlide(currentIdx + 1);
-            }, 3200); // Changes image every 3.2 seconds
+            }, 4500); // Relaxed rotation every 4.5 seconds
           }
         }
 
