@@ -28,46 +28,93 @@
       {%- endif -%}
     </div>
 
-    <div class="voices">
-      {%- if section.blocks.size > 0 -%}
-        {%- for block in section.blocks -%}
-          <div class="glass voice rv" {{ block.shopify_attributes }}>
-            <div class="st">{{ block.settings.stars | escape }}</div>
-            <h4>{{ block.settings.heading | escape }}</h4>
-            <p>{{ block.settings.quote | escape }}</p>
-            <cite>&mdash; {{ block.settings.author | escape }}</cite>
-          </div>
-        {%- endfor -%}
-      {%- else -%}
-        <!-- Default Fallback Reviews -->
-        <div class="glass voice rv">
-          <div class="st">★★★★★</div>
-          <h4>"Grease melted in 10 seconds"</h4>
-          <p>I was skeptical about a plant-based cleaner on Indian chimney grease, but this foam literally dissolved months of oil buildup without any harsh chemical fumes.</p>
-          <cite>&mdash; Ananya S., Mumbai</cite>
+    <div class="reviews-marquee-wrapper">
+      <div class="reviews-marquee-track">
+        <div class="reviews-marquee-group">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              <div class="glass voice rv" {{ block.shopify_attributes }}>
+                <div class="st">{{ block.settings.stars | escape }}</div>
+                <h4>{{ block.settings.heading | escape }}</h4>
+                <p>{{ block.settings.quote | escape }}</p>
+                <cite>&mdash; {{ block.settings.author | escape }}</cite>
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <!-- Default Fallback Reviews -->
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Grease melted in 10 seconds"</h4>
+              <p>I was skeptical about a plant-based cleaner on Indian chimney grease, but this foam literally dissolved months of oil buildup without any harsh chemical fumes.</p>
+              <cite>&mdash; Ananya S., Mumbai</cite>
+            </div>
+
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Tap looks brand new"</h4>
+              <p>Hard water stains on bathroom brass fittings had been bothering me for years. One spray of the tap cleaner and wiped with cloth &mdash; spotless shine!</p>
+              <cite>&mdash; Rahul M., Bengaluru</cite>
+            </div>
+
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Safe around my pets"</h4>
+              <p>Switched all floor cleaners to Purelane Neem floor cleaner. Smells incredibly fresh and natural, and I don't have to worry about my dog licking the floor.</p>
+              <cite>&mdash; Priyanka K., Delhi</cite>
+            </div>
+
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Worth every rupee"</h4>
+              <p>The 3-bottle bundle is fantastic value. Delivery was super fast, packaging eco-friendly, and the products actually work better than big brand chemicals.</p>
+              <cite>&mdash; Vikram R., Pune</cite>
+            </div>
+          {%- endif -%}
         </div>
 
-        <div class="glass voice rv">
-          <div class="st">★★★★★</div>
-          <h4>"Tap looks brand new"</h4>
-          <p>Hard water stains on bathroom brass fittings had been bothering me for years. One spray of the tap cleaner and wiped with cloth — spotless shine!</p>
-          <cite>&mdash; Rahul M., Bengaluru</cite>
-        </div>
+        <!-- Duplicated Group for Infinite Seamless Right-to-Left Loop -->
+        <div class="reviews-marquee-group" aria-hidden="true">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              <div class="glass voice rv">
+                <div class="st">{{ block.settings.stars | escape }}</div>
+                <h4>{{ block.settings.heading | escape }}</h4>
+                <p>{{ block.settings.quote | escape }}</p>
+                <cite>&mdash; {{ block.settings.author | escape }}</cite>
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <!-- Default Fallback Reviews -->
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Grease melted in 10 seconds"</h4>
+              <p>I was skeptical about a plant-based cleaner on Indian chimney grease, but this foam literally dissolved months of oil buildup without any harsh chemical fumes.</p>
+              <cite>&mdash; Ananya S., Mumbai</cite>
+            </div>
 
-        <div class="glass voice rv">
-          <div class="st">★★★★★</div>
-          <h4>"Safe around my pets"</h4>
-          <p>Switched all floor cleaners to Purelane Neem floor cleaner. Smells incredibly fresh and natural, and I don't have to worry about my dog licking the floor.</p>
-          <cite>&mdash; Priyanka K., Delhi</cite>
-        </div>
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Tap looks brand new"</h4>
+              <p>Hard water stains on bathroom brass fittings had been bothering me for years. One spray of the tap cleaner and wiped with cloth &mdash; spotless shine!</p>
+              <cite>&mdash; Rahul M., Bengaluru</cite>
+            </div>
 
-        <div class="glass voice rv">
-          <div class="st">★★★★★</div>
-          <h4>"Worth every rupee"</h4>
-          <p>The 3-bottle bundle is fantastic value. Delivery was super fast, packaging eco-friendly, and the products actually work better than big brand chemicals.</p>
-          <cite>&mdash; Vikram R., Pune</cite>
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Safe around my pets"</h4>
+              <p>Switched all floor cleaners to Purelane Neem floor cleaner. Smells incredibly fresh and natural, and I don't have to worry about my dog licking the floor.</p>
+              <cite>&mdash; Priyanka K., Delhi</cite>
+            </div>
+
+            <div class="glass voice rv">
+              <div class="st">★★★★★</div>
+              <h4>"Worth every rupee"</h4>
+              <p>The 3-bottle bundle is fantastic value. Delivery was super fast, packaging eco-friendly, and the products actually work better than big brand chemicals.</p>
+              <cite>&mdash; Vikram R., Pune</cite>
+            </div>
+          {%- endif -%}
         </div>
-      {%- endif -%}
+      </div>
     </div>
   </div>
 </section>

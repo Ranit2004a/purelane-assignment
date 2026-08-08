@@ -4,7 +4,7 @@
 - **Design Token & Style Extraction:** Automated parsing of 1500+ lines of raw prototype CSS into structured variables, utilities (`.purelane-d1`, `.purelane-d2`, `.glass`, `.glass-2`), and responsive breakpoints.
 - **Liquid Schema Boilerplate:** Generated Shopify Theme Editor JSON schemas (`{% schema %}`) with presets, block options, default settings, and fallback presets for all 5 sections.
 - **Edge-Case Safety Wrappers:** Synthesized Liquid conditional logic for edge cases (sold-out items, missing image placeholders, title truncation).
-- **Git Commit Workflow:** Executed granular per-section commits to build a clean git history.
+
 
 ---
 

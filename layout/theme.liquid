@@ -405,6 +405,16 @@
 
     {% sections 'footer-group' %}
 
+    <!-- Progress Rail -->
+    <nav class="rail" aria-label="Section progress" id="purelaneRail">
+      <a href="#hero" class="on" aria-label="Hero"></a>
+      <a href="#shop" aria-label="Shop"></a>
+      <a href="#combos" aria-label="Combos"></a>
+      <a href="#ingredients" aria-label="Ingredients"></a>
+      <a href="#bundles" aria-label="Bundles"></a>
+      <a href="#reviews" aria-label="Reviews"></a>
+    </nav>
+
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
@@ -501,6 +511,44 @@
           setScene(n);
         }
 
+        /* ---------- rail sync ---------- */
+        function syncRail() {
+          var railLinks = [].slice.call(document.querySelectorAll('.rail a'));
+          if (!railLinks.length) return;
+          var scrollMid = (window.scrollY || window.pageYOffset) + window.innerHeight * 0.45;
+          var activeIdx = 0;
+
+          railLinks.forEach(function (a, i) {
+            var href = a.getAttribute('href');
+            if (!href || href === '#') return;
+            var target = document.querySelector(href);
+            if (target) {
+              var targetTop = target.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+              if (targetTop <= scrollMid) {
+                activeIdx = i;
+              }
+            }
+          });
+
+          railLinks.forEach(function (a, i) {
+            a.classList.toggle('on', i === activeIdx);
+          });
+        }
+
+        // Attach click handlers for smooth dot scrolling
+        document.querySelectorAll('.rail a').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            var href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              var target = document.querySelector(href);
+              if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          });
+        });
+
         /* ---------- parallax water caustics movement ---------- */
         var raf = null, mx = 0, my = 0;
         function frame() {
@@ -515,6 +563,7 @@
             }
           }
           pickScene();
+          syncRail();
         }
         function onScroll() { if (!raf) raf = requestAnimationFrame(frame); }
         window.addEventListener('scroll', onScroll, { passive: true });

@@ -2,7 +2,42 @@
   "sections": {
     "purelane_hero": {
       "type": "purelane-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "label": "SINGLE BOTTLE",
+            "price": "₹200",
+            "compare_price": "₹299",
+            "badge": "33% OFF"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "label": "ANY 2 PRODUCTS",
+            "price": "₹349",
+            "compare_price": "₹598",
+            "badge": "SAVE ₹249"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "label": "ANY 3 PRODUCTS",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "badge": "SAVE ₹398"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
       "settings": {
+        "show_product_stage": false,
         "show_rule": true,
         "kicker": "",
         "title_line1": "CLEAN THAT ",
@@ -27,11 +62,101 @@
     "purelane_combos": {
       "type": "purelane-combos",
       "settings": {
-        "kicker": "MOST POPULAR",
-        "title_line1": "BESTSELLING ",
-        "title_line2": "COMBOS.",
-        "show_rule": true
-      }
+        "kicker": "PRE-BUILT TO SAVE YOU MONEY",
+        "title": "BEST SELLING COMBOS",
+        "description": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own."
+      },
+      "blocks": {
+        "combo_1": {
+          "type": "combo",
+          "settings": {
+            "is_featured": false,
+            "savings_pill": "YOU SAVE ₹398",
+            "badge_tag": "MOST POPULAR",
+            "p1_icon": "p-kitchen",
+            "p1_cap": "Cuts grease instantly",
+            "p2_is_tile": false,
+            "p2_icon": "p-dish",
+            "p2_cap": "Squeaky clean dishes",
+            "p3_icon": "p-tap",
+            "p3_cap": "Melts hard water stains",
+            "title": "KITCHEN ESSENTIALS",
+            "product_count": "3 PRODUCTS",
+            "description": "Includes: Foaming Kitchen Cleaner, Dishwash Gel & Tap Cleaner. Everything for a sparkling kitchen, no need to pick separately.",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "discount_pill": "SAVE ₹398"
+          }
+        },
+        "combo_2": {
+          "type": "combo",
+          "settings": {
+            "is_featured": false,
+            "savings_pill": "YOU SAVE ₹448",
+            "badge_tag": "",
+            "p1_icon": "p-laundry",
+            "p1_cap": "Removes tough stains & odour",
+            "p2_is_tile": true,
+            "p2_cap": "Softens & freshens every wash",
+            "p3_icon": "p-wm",
+            "p3_cap": "Deep-cleans your machine",
+            "title": "LAUNDRY CARE BUNDLE",
+            "product_count": "3 PRODUCTS",
+            "description": "Includes: Laundry Detergent, Fabric Conditioner & Machine Cleaner Powder. Softer, fresher wash, all in one box.",
+            "price": "₹499",
+            "compare_price": "₹947",
+            "discount_pill": "SAVE ₹448"
+          }
+        },
+        "combo_3": {
+          "type": "combo",
+          "settings": {
+            "is_featured": true,
+            "savings_pill": "BIGGEST SAVING",
+            "badge_tag": "BEST VALUE",
+            "p1_icon": "p-kitchen",
+            "p1_cap": "Cuts grease instantly",
+            "p2_is_tile": false,
+            "p2_icon": "p-toilet",
+            "p2_cap": "Kills 99.9% germs",
+            "p3_icon": "p-handwash",
+            "p3_cap": "Gentle hydration for hands",
+            "title": "COMPLETE HOME BUNDLE",
+            "product_count": "5 PRODUCTS",
+            "description": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner & Handwash. Our biggest saving box.",
+            "price": "₹799",
+            "compare_price": "₹1,495",
+            "discount_pill": "SAVE ₹696"
+          }
+        },
+        "combo_4": {
+          "type": "combo",
+          "settings": {
+            "is_featured": false,
+            "savings_pill": "YOU SAVE ₹398",
+            "badge_tag": "",
+            "p1_icon": "p-toilet",
+            "p1_cap": "Kills 99.9% germs",
+            "p2_is_tile": false,
+            "p2_icon": "p-tap",
+            "p2_cap": "Melts hard water stains",
+            "p3_icon": "p-eraser",
+            "p3_cap": "Scrubbing eraser",
+            "title": "BATHROOM DEEP CLEAN",
+            "product_count": "3 PRODUCTS",
+            "description": "Includes: Toilet Cleaner, Tap Cleaner & Eraser. A complete bathroom refresh box.",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "discount_pill": "SAVE ₹398"
+          }
+        }
+      },
+      "block_order": [
+        "combo_1",
+        "combo_2",
+        "combo_3",
+        "combo_4"
+      ]
     },
     "purelane_bundles": {
       "type": "purelane-bundles",
@@ -41,6 +166,18 @@
         "title_line2": "FOR YOU",
         "show_rule": false,
         "show_trust_bar": true
+      }
+    },
+    "purelane_ingredients": {
+      "type": "purelane-ingredients",
+      "settings": {
+        "title": "SOURCED FROM NATURE",
+        "b1_title": "LESS SCRUBBING",
+        "b1_desc": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrubbing hard.",
+        "b2_title": "CLEAN INGREDIENTS",
+        "b2_desc": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want around your home.",
+        "b3_title": "SAFE AROUND EVERYONE",
+        "b3_desc": "Gentle on hands, safe around kids and pets, formulated for sensitive skin and homes."
       }
     },
     "purelane_reviews": {
@@ -57,6 +194,7 @@
     "purelane_hero",
     "purelane_shop",
     "purelane_combos",
+    "purelane_ingredients",
     "purelane_bundles",
     "purelane_reviews"
   ]

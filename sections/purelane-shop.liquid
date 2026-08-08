@@ -53,6 +53,26 @@
   </div>
 </section>
 
+<script>
+  (function() {
+    function initShopCards() {
+      var shopCards = document.querySelectorAll('#shop .card');
+      shopCards.forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          if (e.target.tagName === 'BUTTON' || e.target.closest('button') || e.target.tagName === 'A') return;
+          shopCards.forEach(function(c) { c.classList.remove('active'); });
+          this.classList.add('active');
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initShopCards);
+    } else {
+      initShopCards();
+    }
+  })();
+</script>
+
 {% schema %}
 {
   "name": "Purelane Shop Grid",

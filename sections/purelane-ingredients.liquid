@@ -1,0 +1,334 @@
+{% comment %}
+  Purelane Ingredients & Benefits Section ("SOURCED FROM NATURE")
+  Displays 5 key plant ingredients and 3 feature benefit cards matching reference design.
+{% endcomment %}
+
+<section class="sec purelane-body-root purelane-ingredients-section" id="ingredients" data-scene="3">
+  <div class="wrap purelane-wrap">
+    
+    <!-- Main Top Glass Card: Sourced From Nature -->
+    <div class="glass ingredients-main-card rv">
+      <div class="panel-head" style="margin-bottom: 32px;">
+        <h2 class="d2 purelane-d2 ingredients-title">
+          {{ section.settings.title | default: 'SOURCED FROM NATURE' }}
+        </h2>
+        <div class="ingredients-leaf-divider">
+          <span class="leaf-line"></span>
+          <svg width="22" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 14C12 14 7 9.5 4 8C7 6.5 12 2 12 2C12 2 17 6.5 20 8C17 9.5 12 14 12 14Z" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 14V8" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="leaf-line"></span>
+        </div>
+      </div>
+
+      <div class="ingredients-grid">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'ingredient' -%}
+              <div class="ingredient-col" {{ block.shopify_attributes }}>
+                <div class="ingredient-icon-wrap">
+                  {%- case block.settings.icon_type -%}
+                    {%- when 'coconut' -%}
+                      <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="38" r="16" stroke="#2c5021" stroke-width="2.2"/>
+                        <path d="M24 36C24 40.4 27.6 44 32 44C36.4 44 40 40.4 40 36" stroke="#2c5021" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M32 22V14" stroke="#c9761d" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M32 14C36 10 42 12 42 12C42 12 41 18 32 14Z" fill="#c9761d" opacity="0.2" stroke="#c9761d" stroke-width="1.8"/>
+                        <path d="M32 14C28 10 22 12 22 12C22 12 23 18 32 14Z" fill="#2c5021" opacity="0.2" stroke="#2c5021" stroke-width="1.8"/>
+                      </svg>
+                    {%- when 'orange' -%}
+                      <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="28" cy="38" r="15" stroke="#2c5021" stroke-width="2.2"/>
+                        <path d="M28 23V53M13 38H43M17.4 27.4L38.6 48.6M38.6 27.4L17.4 48.6" stroke="#2c5021" stroke-width="1.2" opacity="0.6"/>
+                        <path d="M36 26C38 20 44 20 44 20C44 20 44.5 26 36 26Z" fill="#c9761d" opacity="0.3" stroke="#c9761d" stroke-width="1.8"/>
+                        <path d="M28 23C32 17 38 18 38 18" stroke="#c9761d" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    {%- when 'soapnut' -%}
+                      <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="41" r="9" stroke="#2c5021" stroke-width="2"/>
+                        <circle cx="39" cy="41" r="9" stroke="#2c5021" stroke-width="2"/>
+                        <circle cx="32" cy="27" r="9" stroke="#2c5021" stroke-width="2"/>
+                        <path d="M32 18V12" stroke="#2c5021" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M32 12C36 8 42 10 42 10C42 10 41 16 32 12Z" fill="#2c5021" opacity="0.25" stroke="#2c5021" stroke-width="1.6"/>
+                      </svg>
+                    {%- when 'neem' -%}
+                      <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M46 14L18 50" stroke="#2c5021" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M42 18C47 16 48 12 48 12C48 12 43 12 39 16C35 20 38 22 38 22C38 22 40 20 42 18Z" fill="#c9761d" opacity="0.3" stroke="#c9761d" stroke-width="1.6"/>
+                        <path d="M34 28C40 26 42 21 42 21C42 21 36 21 31 25C26 29 29 32 29 32C29 32 32 30 34 28Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+                        <path d="M26 38C32 36 34 31 34 31C34 31 28 31 23 35C18 39 21 42 21 42C21 42 24 40 26 38Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+                        <path d="M22 22C17 20 16 16 16 16C16 16 21 16 25 20C29 24 26 26 26 26C26 26 24 24 22 22Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+                        <path d="M30 32C25 30 24 26 24 26C24 26 29 26 33 30C37 34 34 36 34 36C34 36 32 34 30 32Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+                      </svg>
+                    {%- when 'lemongrass' -%}
+                      <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 50V14" stroke="#2c5021" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M32 50C26 38 18 20 16 16" stroke="#2c5021" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M32 50C38 38 46 20 48 16" stroke="#2c5021" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M32 50C22 42 12 32 10 28" stroke="#2c5021" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M32 50C42 42 52 32 54 28" stroke="#2c5021" stroke-width="1.8" stroke-linecap="round"/>
+                      </svg>
+                  {%- endcase -%}
+                </div>
+                <h3 class="ingredient-name">{{ block.settings.title | escape }}</h3>
+                <p class="ingredient-desc">{{ block.settings.description | escape }}</p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Default Fallback Ingredients (Matching Screenshot) -->
+          <div class="ingredient-col">
+            <div class="ingredient-icon-wrap">
+              <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="38" r="16" stroke="#2c5021" stroke-width="2.2"/>
+                <path d="M24 36C24 40.4 27.6 44 32 44C36.4 44 40 40.4 40 36" stroke="#2c5021" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M32 22V14" stroke="#c9761d" stroke-width="2" stroke-linecap="round"/>
+                <path d="M32 14C36 10 42 12 42 12C42 12 41 18 32 14Z" fill="#c9761d" opacity="0.25" stroke="#c9761d" stroke-width="1.8"/>
+                <path d="M32 14C28 10 22 12 22 12C22 12 23 18 32 14Z" fill="#2c5021" opacity="0.25" stroke="#2c5021" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3 class="ingredient-name">COCONUT</h3>
+            <p class="ingredient-desc">Plant-derived cleansers that lift grease</p>
+          </div>
+
+          <div class="ingredient-col">
+            <div class="ingredient-icon-wrap">
+              <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+                <circle cx="28" cy="38" r="15" stroke="#2c5021" stroke-width="2.2"/>
+                <path d="M28 23V53M13 38H43M17.4 27.4L38.6 48.6M38.6 27.4L17.4 48.6" stroke="#2c5021" stroke-width="1.2" opacity="0.6"/>
+                <path d="M36 26C38 20 44 20 44 20C44 20 44.5 26 36 26Z" fill="#c9761d" opacity="0.3" stroke="#c9761d" stroke-width="1.8"/>
+                <path d="M28 23C32 17 38 18 38 18" stroke="#c9761d" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="ingredient-name">ORANGE PEEL</h3>
+            <p class="ingredient-desc">Natural degreaser and fresh citrus lift</p>
+          </div>
+
+          <div class="ingredient-col">
+            <div class="ingredient-icon-wrap">
+              <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+                <circle cx="25" cy="41" r="9" stroke="#2c5021" stroke-width="2"/>
+                <circle cx="39" cy="41" r="9" stroke="#2c5021" stroke-width="2"/>
+                <circle cx="32" cy="27" r="9" stroke="#2c5021" stroke-width="2"/>
+                <path d="M32 18V12" stroke="#2c5021" stroke-width="2" stroke-linecap="round"/>
+                <path d="M32 12C36 8 42 10 42 10C42 10 41 16 32 12Z" fill="#2c5021" opacity="0.25" stroke="#2c5021" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3 class="ingredient-name">SOAP NUT</h3>
+            <p class="ingredient-desc">A traditional plant foaming agent</p>
+          </div>
+
+          <div class="ingredient-col">
+            <div class="ingredient-icon-wrap">
+              <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+                <path d="M46 14L18 50" stroke="#2c5021" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M42 18C47 16 48 12 48 12C48 12 43 12 39 16C35 20 38 22 38 22C38 22 40 20 42 18Z" fill="#c9761d" opacity="0.3" stroke="#c9761d" stroke-width="1.6"/>
+                <path d="M34 28C40 26 42 21 42 21C42 21 36 21 31 25C26 29 29 32 29 32C29 32 32 30 34 28Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+                <path d="M26 38C32 36 34 31 34 31C34 31 28 31 23 35C18 39 21 42 21 42C21 42 24 40 26 38Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+                <path d="M22 22C17 20 16 16 16 16C16 16 21 16 25 20C29 24 26 26 26 26C26 26 24 24 22 22Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+                <path d="M30 32C25 30 24 26 24 26C24 26 29 26 33 30C37 34 34 36 34 36C34 36 32 34 30 32Z" fill="#2c5021" opacity="0.3" stroke="#2c5021" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3 class="ingredient-name">NEEM</h3>
+            <p class="ingredient-desc">Time-tested antibacterial from the tree</p>
+          </div>
+
+          <div class="ingredient-col">
+            <div class="ingredient-icon-wrap">
+              <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+                <path d="M32 50V14" stroke="#2c5021" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M32 50C26 38 18 20 16 16" stroke="#2c5021" stroke-width="2" stroke-linecap="round"/>
+                <path d="M32 50C38 38 46 20 48 16" stroke="#2c5021" stroke-width="2" stroke-linecap="round"/>
+                <path d="M32 50C22 42 12 32 10 28" stroke="#2c5021" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M32 50C42 42 52 32 54 28" stroke="#2c5021" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="ingredient-name">LEMONGRASS</h3>
+            <p class="ingredient-desc">Clean fragrance with nothing synthetic</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Bottom 3 Feature Cards Grid -->
+    <div class="benefits-grid">
+      <div class="glass benefit-card rv">
+        <div class="benefit-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c5021" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/>
+            <path d="M12 8C12 8 9.5 10.5 9.5 13C9.5 14.3807 10.6193 15.5 12 15.5C13.3807 15.5 14.5 14.3807 14.5 13C14.5 10.5 12 8 12 8Z"/>
+          </svg>
+        </div>
+        <h3 class="benefit-title">{{ section.settings.b1_title | default: 'LESS SCRUBBING' }}</h3>
+        <p class="benefit-desc">{{ section.settings.b1_desc | default: 'A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrubbing hard.' }}</p>
+      </div>
+
+      <div class="glass benefit-card rv rv-d1">
+        <div class="benefit-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c5021" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="benefit-title">{{ section.settings.b2_title | default: 'CLEAN INGREDIENTS' }}</h3>
+        <p class="benefit-desc">{{ section.settings.b2_desc | default: 'No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want around your home.' }}</p>
+      </div>
+
+      <div class="glass benefit-card rv rv-d2">
+        <div class="benefit-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c5021" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3 class="benefit-title">{{ section.settings.b3_title | default: 'SAFE AROUND EVERYONE' }}</h3>
+        <p class="benefit-desc">{{ section.settings.b3_desc | default: 'Gentle on hands, safe around kids and pets, formulated for sensitive skin and homes.' }}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Ingredients",
+  "tag": "section",
+  "class": "purelane-ingredients-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Heading",
+      "default": "SOURCED FROM NATURE"
+    },
+    {
+      "type": "header",
+      "content": "Benefit Card 1"
+    },
+    {
+      "type": "text",
+      "id": "b1_title",
+      "label": "Title",
+      "default": "LESS SCRUBBING"
+    },
+    {
+      "type": "textarea",
+      "id": "b1_desc",
+      "label": "Description",
+      "default": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrubbing hard."
+    },
+    {
+      "type": "header",
+      "content": "Benefit Card 2"
+    },
+    {
+      "type": "text",
+      "id": "b2_title",
+      "label": "Title",
+      "default": "CLEAN INGREDIENTS"
+    },
+    {
+      "type": "textarea",
+      "id": "b2_desc",
+      "label": "Description",
+      "default": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want around your home."
+    },
+    {
+      "type": "header",
+      "content": "Benefit Card 3"
+    },
+    {
+      "type": "text",
+      "id": "b3_title",
+      "label": "Title",
+      "default": "SAFE AROUND EVERYONE"
+    },
+    {
+      "type": "textarea",
+      "id": "b3_desc",
+      "label": "Description",
+      "default": "Gentle on hands, safe around kids and pets, formulated for sensitive skin and homes."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient Column",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Preset",
+          "options": [
+            { "value": "coconut", "label": "Coconut" },
+            { "value": "orange", "label": "Orange Peel" },
+            { "value": "soapnut", "label": "Soap Nut" },
+            { "value": "neem", "label": "Neem" },
+            { "value": "lemongrass", "label": "Lemongrass" }
+          ],
+          "default": "coconut"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Ingredient Name",
+          "default": "COCONUT"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Plant-derived cleansers that lift grease"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Ingredients",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon_type": "coconut",
+            "title": "COCONUT",
+            "description": "Plant-derived cleansers that lift grease"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon_type": "orange",
+            "title": "ORANGE PEEL",
+            "description": "Natural degreaser and fresh citrus lift"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon_type": "soapnut",
+            "title": "SOAP NUT",
+            "description": "A traditional plant foaming agent"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon_type": "neem",
+            "title": "NEEM",
+            "description": "Time-tested antibacterial from the tree"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon_type": "lemongrass",
+            "title": "LEMONGRASS",
+            "description": "Clean fragrance with nothing synthetic"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -76,77 +76,84 @@
       </div>
     </div>
 
-    <div class="hero-prod" id="heroProd">
-      <div class="hstage" id="hstage">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'slide' -%}
-              <div class="hslide hs{{ forloop.index }} {% if forloop.first %}on{% endif %}" data-n="{{ forloop.index }}" {{ block.shopify_attributes }}>
-                {%- case forloop.index -%}
-                  {%- when 1 -%}
-                    <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
-                  {%- when 2 -%}
-                    <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
-                    <span class="hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
-                  {%- else -%}
-                    <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
-                    <span class="hp p-mbtl b d2" role="img" aria-label="Purelane metal cleaner bottle"></span>
-                    <span class="hp p-kbtl c d3" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
-                {%- endcase -%}
+    {%- if section.settings.show_product_stage -%}
+      <div class="hero-prod" id="heroProd">
+        <div class="hstage" id="hstage">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'slide' -%}
+                <div class="hslide hs{{ forloop.index }} {% if forloop.first %}on{% endif %}" data-n="{{ forloop.index }}" {{ block.shopify_attributes }}>
+                  {%- case forloop.index -%}
+                    {%- when 1 -%}
+                      <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+                    {%- when 2 -%}
+                      <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
+                      <span class="hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
+                    {%- else -%}
+                      <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
+                      <span class="hp p-mbtl b d2" role="img" aria-label="Purelane metal cleaner bottle"></span>
+                      <span class="hp p-kbtl c d3" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
+                  {%- endcase -%}
 
-                <div class="glass-2 ptag">
-                  <span class="lbl">{{ block.settings.label | escape }}</span>
-                  <span class="val">
-                    <strong>{{ block.settings.price | escape }}</strong>
-                    {%- if block.settings.compare_price != blank -%}
-                      <s>{{ block.settings.compare_price | escape }}</s>
+                  <div class="glass-2 ptag">
+                    <span class="lbl">{{ block.settings.label | escape }}</span>
+                    <span class="val">
+                      <strong>{{ block.settings.price | escape }}</strong>
+                      {%- if block.settings.compare_price != blank -%}
+                        <s>{{ block.settings.compare_price | escape }}</s>
+                      {%- endif -%}
+                    </span>
+                    {%- if block.settings.badge != blank -%}
+                      <span class="cut">{{ block.settings.badge | escape }}</span>
                     {%- endif -%}
-                  </span>
-                  {%- if block.settings.badge != blank -%}
-                    <span class="cut">{{ block.settings.badge | escape }}</span>
-                  {%- endif -%}
+                  </div>
                 </div>
+            {%- endcase -%}
+          {%- else -%}
+            <!-- Default Slides Fallback -->
+            <div class="hslide hs1 on" data-n="1">
+              <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+              <div class="glass-2 ptag">
+                <span class="lbl">SINGLE BOTTLE</span>
+                <span class="val"><strong>₹200</strong><s>₹299</s></span>
+                <span class="cut">33% OFF</span>
               </div>
-          {%- endcase -%}
-        {%- else -%}
-          <!-- Default Slides Fallback -->
-          <div class="hslide hs1 on" data-n="1">
-            <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
-            <div class="glass-2 ptag">
-              <span class="lbl">SINGLE BOTTLE</span>
-              <span class="val"><strong>₹200</strong><s>₹299</s></span>
-              <span class="cut">33% OFF</span>
             </div>
-          </div>
-          <div class="hslide hs2" data-n="2">
-            <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner"></span>
-            <span class="hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner"></span>
-            <div class="glass-2 ptag">
-              <span class="lbl">ANY 2 PRODUCTS</span>
-              <span class="val"><strong>₹349</strong><s>₹598</s></span>
-              <span class="cut">SAVE ₹249</span>
+            <div class="hslide hs2" data-n="2">
+              <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner"></span>
+              <span class="hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner"></span>
+              <div class="glass-2 ptag">
+                <span class="lbl">ANY 2 PRODUCTS</span>
+                <span class="val"><strong>₹349</strong><s>₹598</s></span>
+                <span class="cut">SAVE ₹249</span>
+              </div>
             </div>
-          </div>
-          <div class="hslide hs3" data-n="3">
-            <span class="hp p-tbtl a d1"></span>
-            <span class="hp p-mbtl b d2"></span>
-            <span class="hp p-kbtl c d3"></span>
-            <div class="glass-2 ptag">
-              <span class="lbl">ANY 3 PRODUCTS</span>
-              <span class="val"><strong>₹499</strong><s>₹897</s></span>
-              <span class="cut">SAVE ₹398</span>
+            <div class="hslide hs3" data-n="3">
+              <span class="hp p-tbtl a d1"></span>
+              <span class="hp p-mbtl b d2"></span>
+              <span class="hp p-kbtl c d3"></span>
+              <div class="glass-2 ptag">
+                <span class="lbl">ANY 3 PRODUCTS</span>
+                <span class="val"><strong>₹499</strong><s>₹897</s></span>
+                <span class="cut">SAVE ₹398</span>
+              </div>
             </div>
-          </div>
-        {%- endfor -%}
-      </div>
+          {%- endfor -%}
+        </div>
 
-      <div class="hdots" id="hdots">
-        {%- assign slide_count = section.blocks.size | default: 3 -%}
-        {%- for i in (1..slide_count) -%}
-          <button type="button" class="{% if forloop.first %}on{% endif %}" aria-label="Show slide {{ i }}"></button>
-        {%- endfor -%}
+        <div class="hdots" id="hdots">
+          {%- assign block_cnt = section.blocks.size -%}
+          {%- if block_cnt > 0 -%}
+            {%- assign slide_count = block_cnt -%}
+          {%- else -%}
+            {%- assign slide_count = 3 -%}
+          {%- endif -%}
+          {%- for i in (1..slide_count) -%}
+            <button type="button" class="{% if forloop.first %}on{% endif %}" aria-label="Show slide {{ i }}"></button>
+          {%- endfor -%}
+        </div>
       </div>
-    </div>
+    {%- endif -%}
   </div>
 
   <script>
@@ -211,6 +218,12 @@
   "tag": "section",
   "class": "purelane-hero-section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_stage",
+      "label": "Show Product Showcase Stage",
+      "default": true
+    },
     {
       "type": "checkbox",
       "id": "show_rule",
