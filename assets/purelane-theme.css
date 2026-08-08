@@ -1041,13 +1041,13 @@ main,
   margin-top: 26px;
 }
 
-/* Product Stage & Rich Hover Animations */
+/* Product Stage & Floating / Parallax Animation Engine */
 .hero-prod {
   position: relative;
   width: min(48vw, 540px);
   z-index: 2;
   filter: drop-shadow(0 14px 22px rgba(0, 74, 66, .15));
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.5s ease;
+  transition: transform 0.6s var(--ease), filter 0.6s ease;
   cursor: pointer;
 }
 
@@ -1056,79 +1056,93 @@ main,
   filter: drop-shadow(0 26px 50px rgba(0, 78, 70, 0.28));
 }
 
+.hstage {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 74vh, 680px);
+}
+
+.hslide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right: 2%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .85s var(--ease);
+}
+
+.hslide.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .hp {
   position: relative;
-  display: block;
+  width: auto;
+  height: 100%;
   flex: 0 0 auto;
-  min-width: 110px;
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: contain;
   opacity: 0;
-  transform: translateY(28px) scale(.94);
-  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  transform: translateY(35px) scale(.94);
+  transition: opacity .85s var(--ease), transform .85s var(--ease);
   filter: drop-shadow(0 14px 22px rgba(0, 74, 66, .15));
+}
+
+.hp svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  pointer-events: none;
 }
 
 .hslide.on .hp {
   opacity: 1;
-  transform: none;
+  transform: translateY(0) scale(1);
 }
 
 .hslide.on .hp.d1 {
   transition-delay: .06s;
+  animation: purelaneFloat1 5.5s ease-in-out infinite 0.95s;
 }
 
 .hslide.on .hp.d2 {
-  transition-delay: .30s;
+  transition-delay: .28s;
+  animation: purelaneFloat2 6.8s ease-in-out infinite 1.2s;
 }
 
 .hslide.on .hp.d3 {
-  transition-delay: .54s;
+  transition-delay: .50s;
+  animation: purelaneFloat3 6.0s ease-in-out infinite 1.45s;
 }
 
-/* Slide Specific Layouts */
-.hs1 .a {
-  height: 100%;
-  width: 155px;
-  z-index: 3;
+/* Continuous Floating / Parallax Levitation Keyframes */
+@keyframes purelaneFloat1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.hs2 .a {
-  height: 80%;
-  width: 130px;
-  margin-right: -6%;
-  z-index: 1;
+@keyframes purelaneFloat2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
 }
 
-.hs2 .b {
-  height: 97%;
-  width: 155px;
-  z-index: 3;
+@keyframes purelaneFloat3 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-.hs3 .a {
-  height: 75%;
-  width: 120px;
-  margin-right: -6%;
-  z-index: 1;
-  order: 1;
-}
-
-.hs3 .c {
-  height: 97%;
-  width: 155px;
-  z-index: 3;
-  order: 2;
-}
-
-.hs3 .b {
-  height: 79%;
-  width: 130px;
-  margin-left: -6%;
-  z-index: 2;
-  order: 3;
-}
+/* Slide Specific Layouts from purelane-homepage.html */
+.hs1 .a { height: 100% !important; z-index: 3; }
+.hs2 .a { height: 80% !important; margin-right: -8%; z-index: 1; }
+.hs2 .b { height: 97% !important; z-index: 3; }
+.hs3 .a { height: 75% !important; margin-right: -8%; z-index: 1; order: 1; }
+.hs3 .c { height: 97% !important; z-index: 3; order: 2; }
+.hs3 .b { height: 79% !important; margin-left: -8%; z-index: 2; order: 3; }
 
 .hero-prod:hover .hp,
 .hp:hover {
@@ -1149,6 +1163,12 @@ main,
   transform: translateY(16px);
   transition: opacity .8s var(--ease) .62s, transform .5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
+}
+
+.hslide.on .ptag {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: purelaneFloat2 7.5s ease-in-out infinite 1.6s;
 }
 
 .ptag:hover {

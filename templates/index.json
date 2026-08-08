@@ -37,7 +37,7 @@
         "slide_3"
       ],
       "settings": {
-        "show_product_stage": false,
+        "show_product_stage": true,
         "show_rule": true,
         "kicker": "",
         "title_line1": "CLEAN THAT ",
